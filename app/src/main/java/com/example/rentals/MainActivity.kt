@@ -7,10 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.rentals.navigation.AppNavigation
+import com.example.rentals.navigation.Home
 import com.example.rentals.ui.theme.RentalsTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +20,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             RentalsTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                val backStack = remember { mutableStateListOf<Any>(Home) }
+                Scaffold(modifier = Modifier.fillMaxSize(),
+                ) { innerPadding ->
+                    AppNavigation(modifier = Modifier.padding(innerPadding), backStack = backStack)
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RentalsTheme {
-        Greeting("Android")
-    }
-}
