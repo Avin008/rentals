@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.example.rentals.navigation.AppNavigation
 import com.example.rentals.navigation.Home
+import com.example.rentals.ui.components.TopNavigationBar
 import com.example.rentals.ui.theme.RentalsTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,6 +23,9 @@ class MainActivity : ComponentActivity() {
             RentalsTheme {
                 val backStack = remember { mutableStateListOf<Any>(Home) }
                 Scaffold(modifier = Modifier.fillMaxSize(),
+                    topBar = {
+                        TopNavigationBar()
+                    },
                 ) { innerPadding ->
                     AppNavigation(modifier = Modifier.padding(innerPadding), backStack = backStack)
                 }

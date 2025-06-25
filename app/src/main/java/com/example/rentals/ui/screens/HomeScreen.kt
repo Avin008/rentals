@@ -2,6 +2,7 @@ package com.example.rentals.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -20,5 +21,18 @@ fun HomeScreen() {
         OrderTabs(tabList = tabList, selectedTabIndex = selectedTabIndex, onSelectedTab = {tabIndex ->
             selectedTabIndex = tabIndex
         })
+        Column(modifier = Modifier.weight(1f)) {
+            when(selectedTabIndex) {
+                0 -> {
+                    Text(text = "Delivery")
+                }
+                1 -> {
+                    Text(text = "Pickup")
+                }
+                2 -> {
+                    Text(text = "OnGoing")
+                }
+            }
+        }
     }
 }
