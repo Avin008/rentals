@@ -12,13 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.ui.NavDisplay
+import com.example.rentals.ui.screens.HomeScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
 data object Home: NavKey
-
-@Serializable
-data object Items: NavKey
 
 @Composable
 fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
@@ -29,20 +27,7 @@ fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
         entryProvider = { key ->
             when (key) {
                 is Home -> NavEntry(key) {
-                    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(text = "Home Screen")
-                        Button(onClick = {backStack.add(Items)}) {
-                            Text(text = "GOTO ITEMS")
-                        }
-                    }
-                }
-                is Items -> NavEntry(key) {
-                        Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(text = "Items Screen")
-                            Button(onClick = {backStack.removeLastOrNull()}) {
-                                Text(text = "GOTO HOME")
-                            }
-                        }
+                    HomeScreen()
                 }
                 else -> NavEntry(Unit) { Text("Unknown route") }
             }
