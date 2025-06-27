@@ -12,18 +12,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.rentals.ui.components.OrderTabs
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.rentals.ui.components.DeliveryList
+import com.example.rentals.navigation.Search
 import com.example.rentals.ui.components.HorizontalDateScroller
+import com.example.rentals.ui.components.SectionList
 import com.example.rentals.ui.viewmodels.HomeViewModel
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
+fun HomeScreen(viewModel: HomeViewModel = viewModel(), backStack: SnapshotStateList<Any>) {
     val tabList = listOf("Delivery", "Pickup", "OnGoing")
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
 
         HorizontalDateScroller(
@@ -39,11 +43,14 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
         OrderTabs(tabList = tabList, selectedTabIndex = uiState.selectedTabIndex, onSelectedTab = {tabIndex ->
             viewModel.selectTab(tabIndex)
         })
+
         Column(modifier = Modifier.weight(1f)) {
             when(uiState.selectedTabIndex) {
                 0 -> {
                     if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                        DeliveryList(orders = uiState.deliveries, onClick = {})
+                        SectionList(orders = uiState.deliveries, onClick = {
+                            backStack.add(Search)
+                        })
                     }else {
                         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                             CircularProgressIndicator()

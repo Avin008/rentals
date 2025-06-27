@@ -28,7 +28,7 @@ import com.example.rentals.sampledata.sampleOrderItems
 import com.example.rentals.ui.theme.RentalsTheme
 
 @Composable
-fun DeliveryList(
+fun SectionList(
     modifier: Modifier = Modifier,
     orders: List<DeliveryItem>,
     onClick: (String) -> Unit = {},
@@ -89,7 +89,7 @@ fun DeliveryList(
 @Composable
 fun OrderListPreviewWithItems() {
     RentalsTheme {
-        DeliveryList(orders = sampleOrderItems)
+        SectionList(orders = sampleOrderItems)
     }
 }
 
@@ -97,6 +97,6 @@ fun OrderListPreviewWithItems() {
 @Composable
 fun OrderListPreviewEmpty() {
     RentalsTheme {
-        DeliveryList(orders = emptyList())
+        SectionList(orders = emptyList())
     }
 }

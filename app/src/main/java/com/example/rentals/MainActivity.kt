@@ -1,6 +1,7 @@
 package com.example.rentals
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
                 val backStack = remember { mutableStateListOf<Any>(Home) }
                 Scaffold(modifier = Modifier.fillMaxSize(),
                     topBar = {
-                        TopNavigationBar()
+                        if(backStack.lastIndex == 0) TopNavigationBar()
                     },
                 ) { innerPadding ->
                     AppNavigation(modifier = Modifier.padding(innerPadding), backStack = backStack)
