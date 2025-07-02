@@ -44,7 +44,7 @@ fun DateItem(
             contentColor = MaterialTheme.colorScheme.onSecondaryContainer
         )
         else -> CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            containerColor = MaterialTheme.colorScheme.surface,
             contentColor = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }

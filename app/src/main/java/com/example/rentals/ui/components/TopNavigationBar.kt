@@ -15,7 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopNavigationBar() {
-    TopAppBar(title = { Text(text = "TentWale",  fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.primary) }, navigationIcon = {
+    TopAppBar(title = { Text(text = "Picasso",  fontWeight = FontWeight.SemiBold) }, navigationIcon = {
         IconButton(onClick = {}) {
             Icon(
                 imageVector = Icons.Filled.Menu,

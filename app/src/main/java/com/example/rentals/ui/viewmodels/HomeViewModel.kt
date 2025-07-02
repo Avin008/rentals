@@ -8,6 +8,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -26,13 +27,26 @@ class HomeViewModel: ViewModel() {
 
     init {
         viewModelScope.launch {
-            delay(2000)
-            _uiState.update {
-                it.copy(
-                    deliveries = sampleOrderItems,
-                    isLoading = false
-                )
+            delay(1000)
+            _uiState.collect { state ->
+                _uiState.update {
+                    it.copy(deliveries =  dummyApiCall(state.selectedDate, state.selectedTabIndex), isLoading = false)
+                }
             }
+        }
+    }
+
+    private suspend fun dummyApiCall(selectedDate: LocalDate, tabIndex: Int): List<DeliveryItem> {
+        delay(300)
+        return sampleOrderItems.filter { orders -> orders.status == getStatus(tabIndex) }.filter { filteredItems -> filteredItems.deliveryDate == selectedDate.toString()}
+    }
+
+   private fun getStatus(tabIndex: Int): String {
+        return when (tabIndex) {
+            0 -> "delivery"
+            1 -> "pickup"
+            2 -> "ongoing"
+            else -> "nothing"
         }
     }
 

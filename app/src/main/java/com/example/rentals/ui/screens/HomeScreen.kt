@@ -58,13 +58,25 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(), backStack: SnapshotStateL
                     }
                 }
                 1 -> {
-                    Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text("No Pickups for Today!", fontWeight = FontWeight.SemiBold)
+                    if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
+                        SectionList(orders = uiState.deliveries, onClick = {
+                            backStack.add(Search)
+                        })
+                    }else {
+                        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                            CircularProgressIndicator()
+                        }
                     }
                 }
                 2 -> {
-                    Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text("There are no Ongoing Orders", fontWeight = FontWeight.SemiBold)
+                    if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
+                        SectionList(orders = uiState.deliveries, onClick = {
+                            backStack.add(Search)
+                        })
+                    }else {
+                        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                            CircularProgressIndicator()
+                        }
                     }
                 }
             }
