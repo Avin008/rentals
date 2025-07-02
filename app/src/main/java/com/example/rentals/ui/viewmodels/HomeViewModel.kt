@@ -29,7 +29,7 @@ class HomeViewModel: ViewModel() {
             delay(2000)
             _uiState.update {
                 it.copy(
-                    sampleOrderItems,
+                    deliveries = sampleOrderItems,
                     isLoading = false
                 )
             }
