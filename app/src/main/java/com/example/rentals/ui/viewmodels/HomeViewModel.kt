@@ -30,6 +30,10 @@ class HomeViewModel: ViewModel() {
             delay(1000)
             _uiState.collect { state ->
                 _uiState.update {
+                    it.copy(isLoading = true)
+                }
+                delay(200)
+                _uiState.update {
                     it.copy(deliveries =  dummyApiCall(state.selectedDate, state.selectedTabIndex), isLoading = false)
                 }
             }
