@@ -1,6 +1,7 @@
-package com.example.rentals.ui.components
+package com.example.rentals.ui.components.homescreen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -33,6 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.rentals.data.DeliveryItem
 import com.example.rentals.ui.theme.RentalsTheme
+import com.example.rentals.utils.convert24To12HoursTime
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -43,6 +45,7 @@ fun DeliveryCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    Log.e("delivery time", order.deliveryTime)
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -131,7 +134,7 @@ fun DeliveryCard(
                     Spacer(modifier = Modifier.width(4.dp))
 
                     Text(
-                        text = (order.deliveryTime),
+                        text = (convert24To12HoursTime(order.deliveryTime).toString()),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                     )

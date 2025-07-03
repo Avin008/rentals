@@ -1,4 +1,4 @@
-package com.example.rentals.ui.components
+package com.example.rentals.ui.components.homescreen
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SecondaryTabRow
