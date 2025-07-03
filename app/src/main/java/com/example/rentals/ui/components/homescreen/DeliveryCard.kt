@@ -45,7 +45,6 @@ fun DeliveryCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Log.e("delivery time", order.deliveryTime)
     Card(
         modifier = modifier
             .fillMaxWidth()

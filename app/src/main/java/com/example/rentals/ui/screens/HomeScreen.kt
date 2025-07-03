@@ -15,6 +15,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.rentals.navigation.ItemSelection
 import com.example.rentals.navigation.Search
 import com.example.rentals.ui.components.homescreen.HorizontalDateScroller
 import com.example.rentals.ui.components.homescreen.SectionList
@@ -47,7 +48,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(), backStack: SnapshotStateL
                 0 -> {
                     if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                         SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {
-                            backStack.add(Search)
+                            backStack.add(ItemSelection(deliveryDate = "", deliveryTime = "", pickupDate = "", pickupTime = ""))
                         })
                     }else {
                         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
@@ -57,9 +58,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(), backStack: SnapshotStateL
                 }
                 1 -> {
                     if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                        SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {
-                            backStack.add(Search)
-                        })
+                        SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {})
                     }else {
                         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                             CircularProgressIndicator()
@@ -68,9 +67,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(), backStack: SnapshotStateL
                 }
                 2 -> {
                     if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                        SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {
-                            backStack.add(Search)
-                        })
+                        SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {})
                     }else {
                         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                             CircularProgressIndicator()
