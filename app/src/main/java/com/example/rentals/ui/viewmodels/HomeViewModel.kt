@@ -8,7 +8,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -18,7 +17,7 @@ data class HomeUiState(
     val selectedDate: LocalDate = LocalDate.now(),
     val selectedTabIndex: Int = 0,
     val isLoading: Boolean = true,
-    val datesForPreview: List<LocalDate> = List(12) { index -> LocalDate.now().plusDays(index.toLong()) }
+    val datesForPreview: List<LocalDate> = List(12) { index -> LocalDate.now().plusDays(index.toLong()) },
 )
 
 class HomeViewModel: ViewModel() {
@@ -29,10 +28,6 @@ class HomeViewModel: ViewModel() {
         viewModelScope.launch {
             delay(1000)
             _uiState.collect { state ->
-                _uiState.update {
-                    it.copy(isLoading = true)
-                }
-                delay(200)
                 _uiState.update {
                     it.copy(deliveries =  dummyApiCall(state.selectedDate, state.selectedTabIndex), isLoading = false)
                 }
@@ -45,7 +40,7 @@ class HomeViewModel: ViewModel() {
         return sampleOrderItems.filter { orders -> orders.status == getStatus(tabIndex) }.filter { filteredItems -> filteredItems.deliveryDate == selectedDate.toString()}
     }
 
-   private fun getStatus(tabIndex: Int): String {
+    private fun getStatus(tabIndex: Int): String {
         return when (tabIndex) {
             0 -> "delivery"
             1 -> "pickup"
