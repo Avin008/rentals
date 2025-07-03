@@ -18,7 +18,8 @@ data class HomeUiState(
     val selectedTabIndex: Int = 0,
     val isLoading: Boolean = true,
     val datesForPreview: List<LocalDate> = List(12) { index -> LocalDate.now().plusDays(index.toLong()) },
-)
+    val isRefreshing: Boolean = false
+    )
 
 class HomeViewModel: ViewModel() {
     private val _uiState = MutableStateFlow(HomeUiState())
@@ -29,9 +30,17 @@ class HomeViewModel: ViewModel() {
             delay(1000)
             _uiState.collect { state ->
                 _uiState.update {
-                    it.copy(deliveries =  dummyApiCall(state.selectedDate, state.selectedTabIndex), isLoading = false)
+                    it.copy(deliveries =  dummyApiCall(state.selectedDate, state.selectedTabIndex), isLoading = false, isRefreshing = false)
                 }
             }
+        }
+    }
+
+    fun onRefreshing() {
+        _uiState.update { currentState ->
+            currentState.copy(
+                isRefreshing = true,
+            )
         }
     }
 

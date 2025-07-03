@@ -32,6 +32,8 @@ fun SectionList(
     modifier: Modifier = Modifier,
     orders: List<DeliveryItem>,
     onClick: (String) -> Unit = {},
+    isRefreshing: Boolean,
+    onRefresh: () -> Unit
 ) {
     if (orders.isEmpty()) {
         Column(
@@ -61,25 +63,29 @@ fun SectionList(
             )
         }
     } else {
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth(),
-            contentPadding = PaddingValues(bottom = 80.dp)
-        ) {
-            items(
-                items = orders,
-                key = { order -> order.id }
-            ) { order ->
-                DeliveryCard(
-                    order = order,
-                    onClick = { onClick(order.id) },
-                    modifier = Modifier.fillMaxWidth()
-                )
+        PullToRefresh(isRefreshing = isRefreshing, onRefresh = {
+            onRefresh()
+        }) {
+            LazyColumn(
+                modifier = Modifier.fillMaxWidth(),
+                contentPadding = PaddingValues(bottom = 80.dp)
+            ) {
+                items(
+                    items = orders,
+                    key = { order -> order.id }
+                ) { order ->
+                    DeliveryCard(
+                        order = order,
+                        onClick = { onClick(order.id) },
+                        modifier = Modifier.fillMaxWidth()
+                    )
 
-                HorizontalDivider(
-                    modifier = Modifier,
-                    thickness = 1.dp,
-                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.2f)
-                )
+                    HorizontalDivider(
+                        modifier = Modifier,
+                        thickness = 1.dp,
+                        color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.2f)
+                    )
+                }
             }
         }
     }
@@ -89,7 +95,7 @@ fun SectionList(
 @Composable
 fun OrderListPreviewWithItems() {
     RentalsTheme {
-        SectionList(orders = sampleOrderItems)
+        SectionList(orders = sampleOrderItems, isRefreshing = true, onRefresh = {})
     }
 }
 
@@ -97,6 +103,6 @@ fun OrderListPreviewWithItems() {
 @Composable
 fun OrderListPreviewEmpty() {
     RentalsTheme {
-        SectionList(orders = emptyList())
+        SectionList(orders = emptyList(), isRefreshing = false, onRefresh = {})
     }
 }

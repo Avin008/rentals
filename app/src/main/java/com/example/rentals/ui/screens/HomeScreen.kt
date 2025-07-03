@@ -46,7 +46,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(), backStack: SnapshotStateL
             when(uiState.selectedTabIndex) {
                 0 -> {
                     if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                        SectionList(orders = uiState.deliveries, onClick = {
+                        SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {
                             backStack.add(Search)
                         })
                     }else {
@@ -57,7 +57,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(), backStack: SnapshotStateL
                 }
                 1 -> {
                     if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                        SectionList(orders = uiState.deliveries, onClick = {
+                        SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {
                             backStack.add(Search)
                         })
                     }else {
@@ -68,7 +68,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(), backStack: SnapshotStateL
                 }
                 2 -> {
                     if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                        SectionList(orders = uiState.deliveries, onClick = {
+                        SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {
                             backStack.add(Search)
                         })
                     }else {
