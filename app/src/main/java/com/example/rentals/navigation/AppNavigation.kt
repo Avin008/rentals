@@ -15,9 +15,6 @@ import kotlinx.serialization.Serializable
 data object Home: NavKey
 
 @Serializable
-data object Search: NavKey
-
-@Serializable
 data class ItemSelection(val deliveryDate: String, val deliveryTime: String, val pickupDate: String, val pickupTime: String): NavKey
 
 @Composable
