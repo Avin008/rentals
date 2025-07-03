@@ -1,19 +1,14 @@
 package com.example.rentals.navigation
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.ui.NavDisplay
 import com.example.rentals.ui.screens.HomeScreen
-import com.example.rentals.ui.screens.SearchScreen
+import com.example.rentals.ui.screens.ItemSelectionScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -21,6 +16,9 @@ data object Home: NavKey
 
 @Serializable
 data object Search: NavKey
+
+@Serializable
+data class ItemSelection(val deliveryDate: String, val deliveryTime: String, val pickupDate: String, val pickupTime: String): NavKey
 
 @Composable
 fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
@@ -33,8 +31,8 @@ fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
                 is Home -> NavEntry(key) {
                     HomeScreen(backStack = backStack)
                 }
-                is Search -> NavEntry(key) {
-                    SearchScreen()
+                is ItemSelection -> NavEntry(key, metadata = mapOf("extraDataKey" to "extraDataValue")) {
+                    ItemSelectionScreen()
                 }
                 else -> NavEntry(Unit) { Text("Unknown route") }
             }
