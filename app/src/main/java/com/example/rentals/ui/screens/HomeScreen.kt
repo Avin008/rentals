@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.rentals.navigation.ItemSelection
-import com.example.rentals.navigation.Search
 import com.example.rentals.ui.components.homescreen.HorizontalDateScroller
 import com.example.rentals.ui.components.homescreen.SectionList
 import com.example.rentals.ui.viewmodels.HomeViewModel
