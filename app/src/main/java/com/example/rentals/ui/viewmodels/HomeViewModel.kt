@@ -22,7 +22,7 @@ data class HomeUiState(
     )
 
 class HomeViewModel: ViewModel() {
-    private val _uiState = MutableStateFlow(HomeUiState())
+    private val _uiState = MutableStateFlow(HomeUiState(isRefreshing = false))
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
     fun getData(selectedDate: LocalDate, tabIndex: Int, deliveries: List<DeliveryItem>) {
@@ -34,10 +34,18 @@ class HomeViewModel: ViewModel() {
     }
 
     fun onRefreshing() {
-        _uiState.update { currentState ->
-            currentState.copy(
-                isRefreshing = true,
-            )
+        viewModelScope.launch {
+            _uiState.update { currentState ->
+                currentState.copy(
+                    isRefreshing = true,
+                )
+            }
+            delay(500)
+            _uiState.update { currentState ->
+                currentState.copy(
+                    isRefreshing = false,
+                )
+            }
         }
     }
 

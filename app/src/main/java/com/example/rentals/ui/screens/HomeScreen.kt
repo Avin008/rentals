@@ -53,7 +53,6 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(), backStack: SnapshotStateL
                 0 -> {
                     if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                         SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {
-                            backStack.add(ItemSelection(deliveryDate = "", deliveryTime = "", pickupDate = "", pickupTime = ""))
                         })
                     }else {
                         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
