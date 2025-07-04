@@ -25,13 +25,10 @@ class HomeViewModel: ViewModel() {
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
-    init {
+    fun getData(selectedDate: LocalDate, tabIndex: Int, deliveries: List<DeliveryItem>) {
         viewModelScope.launch {
-            delay(1000)
-            _uiState.collect { state ->
-                _uiState.update {
-                    it.copy(deliveries =  dummyApiCall(state.selectedDate, state.selectedTabIndex), isLoading = false, isRefreshing = false)
-                }
+            _uiState.update {
+                it.copy(deliveries = deliveries, isLoading = false)
             }
         }
     }
@@ -44,8 +41,8 @@ class HomeViewModel: ViewModel() {
         }
     }
 
-    private suspend fun dummyApiCall(selectedDate: LocalDate, tabIndex: Int): List<DeliveryItem> {
-        delay(300)
+    suspend fun dummyApiCall(selectedDate: LocalDate, tabIndex: Int): List<DeliveryItem> {
+        delay(500)
         return sampleOrderItems.filter { orders -> orders.status == getStatus(tabIndex) }.filter { filteredItems -> filteredItems.deliveryDate == selectedDate.toString()}
     }
 

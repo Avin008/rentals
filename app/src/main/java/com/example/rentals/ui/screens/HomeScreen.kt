@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.rentals.ui.components.homescreen.OrderTabs
@@ -24,6 +25,11 @@ import com.example.rentals.ui.viewmodels.HomeViewModel
 fun HomeScreen(viewModel: HomeViewModel = viewModel(), backStack: SnapshotStateList<Any>) {
     val tabList = listOf("Delivery", "Pickup", "OnGoing")
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(uiState.selectedDate, uiState.selectedTabIndex) {
+        val deliveriesData = viewModel.dummyApiCall(uiState.selectedDate, uiState.selectedTabIndex)
+        viewModel.getData(uiState.selectedDate, uiState.selectedTabIndex, deliveriesData)
+    }
 
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
