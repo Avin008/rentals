@@ -1,5 +1,6 @@
 package com.example.rentals.ui.components.itemselection
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,9 +13,11 @@ import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -24,7 +27,13 @@ fun FilterSection() {
             item {
                 AssistChip(
                     onClick = {},
-                    label = { Text("Category") },
+                    label = { Text("Category", style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Normal)
+                            },
+                    border = BorderStroke(
+                        width = 1.dp,
+                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
+                    ),
                     leadingIcon = {
                         Icon(
                             Icons.Filled.KeyboardArrowDown,
@@ -37,7 +46,13 @@ fun FilterSection() {
             item {
                 AssistChip(
                     onClick = {},
-                    label = { Text("Sort By") },
+                    label = { Text("Sort By", style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Normal)
+                    },
+                    border = BorderStroke(
+                        width = 1.dp,
+                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
+                    ),
                     leadingIcon = {
                         Icon(
                             Icons.Filled.FilterList,
