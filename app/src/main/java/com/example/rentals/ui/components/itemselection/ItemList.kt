@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.SearchOff
 import androidx.compose.material3.Icon
@@ -33,7 +34,7 @@ fun ItemList(
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Box(
-            modifier = Modifier.weight(1f) // Make the Box fill the remaining space in the Column
+            modifier = Modifier.weight(1f)
         ) {
             if (filteredItems.isEmpty()) {
                 Box(
@@ -43,7 +44,7 @@ fun ItemList(
                     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(
                             imageVector = Icons.Filled.SearchOff,
-                            contentDescription = null, // Decorative
+                            contentDescription = null,
                             modifier = Modifier.size(48.dp),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                         )
@@ -61,8 +62,8 @@ fun ItemList(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    items(10) {
-                        ItemCard(item = RentalItem(id = "123", price = 200.00, name = "Dekchi", description = "", totalItems = 20, imageUrl = "", category = "", userId = "", createdAt = "", inStock = 0, isAvailable = true))
+                    items(filteredItems, key = { it.id }) {
+                            ItemCard(item = it)
                     }
                 }
             }
