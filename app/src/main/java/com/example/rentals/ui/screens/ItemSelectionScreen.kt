@@ -9,8 +9,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.rentals.data.RentalItem
+import com.example.rentals.sampledata.sampleItemsData
 import com.example.rentals.ui.components.itemselection.FilterSection
 import com.example.rentals.ui.components.itemselection.ItemSelectionTopBar
+import com.example.rentals.ui.components.itemselection.ItemList
 
 @Composable
 fun ItemSelectionScreen() {
@@ -18,6 +21,8 @@ fun ItemSelectionScreen() {
         Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
             Spacer(modifier = Modifier.height(10.dp))
             FilterSection()
+            Spacer(modifier = Modifier.height(10.dp))
+            ItemList(filteredItems = sampleItemsData)
         }
     }
 }
