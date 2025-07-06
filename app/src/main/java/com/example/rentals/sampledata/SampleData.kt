@@ -1,6 +1,7 @@
 package com.example.rentals.sampledata
 
 import com.example.rentals.data.DeliveryItem
+import com.example.rentals.data.RentalItem
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.OffsetDateTime
