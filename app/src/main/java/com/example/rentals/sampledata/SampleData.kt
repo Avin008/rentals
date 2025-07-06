@@ -18,3 +18,19 @@ val sampleOrderItems = listOf(
     DeliveryItem("6", "Anubhav Patra", LocalDate.now().plusDays(3).toString(), LocalTime.of(9, 0).toString(), 7525.00, "delivery", "user789", null, null, OffsetDateTime.now(ZoneOffset.UTC).minusDays(1).toString(), "Kurla"),
     DeliveryItem("7", "Ananta Chattria", LocalDate.now().plusDays(4).toString(), LocalTime.of(9, 0).toString(), 7525.00, "ongoing", "user789", null, null, OffsetDateTime.now(ZoneOffset.UTC).minusDays(1).toString(), "Nuapali"),
     )
+
+
+val sampleItemsData = listOf(RentalItem(
+    userId = "user_001",
+    id = "item_001",
+    imageUrl = "https://example.com/images/bike1.jpg",
+    name = "Mountain Bike",
+    category = "Bicycles",
+    price = 15.0,
+    description = "A sturdy mountain bike suitable for all terrains.",
+    isAvailable = true,
+    createdAt = "2025-07-01T10:00:00Z",
+    inStock = 3,
+    totalItems = 5
+)
+)
