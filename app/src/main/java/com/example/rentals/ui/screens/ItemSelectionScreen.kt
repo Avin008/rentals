@@ -21,29 +21,29 @@ import com.example.rentals.ui.components.itemselection.CartSummary
 import com.example.rentals.ui.components.itemselection.FilterSection
 import com.example.rentals.ui.components.itemselection.ItemList
 import com.example.rentals.ui.components.itemselection.ItemSearchBar
-import com.example.rentals.ui.viewmodels.CartViewModel
+import com.example.rentals.ui.viewmodels.ItemSelectionViewModel
 
 @Composable
-fun ItemSelectionScreen(viewModel: CartViewModel = viewModel()) {
+fun ItemSelectionScreen(itemSelectionViewModel: ItemSelectionViewModel = viewModel()) {
 
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val itemSelectionUiState by itemSelectionViewModel.uiState.collectAsStateWithLifecycle()
     val text = rememberTextFieldState("")
 
     LaunchedEffect(Unit) {
-        viewModel.getData()
+        itemSelectionViewModel.getData()
     }
 
     Scaffold(modifier = Modifier.fillMaxSize(), topBar = {
-        if(!uiState.isLoading){
+        if(!itemSelectionUiState.isLoading){
             ItemSearchBar(
                 textFieldState = text,
                 onSearch = { },
                 searchResults = listOf()
             )
         } }, bottomBar = {
-        if (!uiState.isLoading) { CartSummary(10, onContinueClick = {}, totalPrice = 100.00) }
+        if (!itemSelectionUiState.isLoading) { CartSummary(10, onContinueClick = {}, totalPrice = 100.00) }
     }) {innerPadding ->
-        if (uiState.isLoading) {
+        if (itemSelectionUiState.isLoading) {
             Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                 CircularProgressIndicator()
             }
@@ -54,7 +54,7 @@ fun ItemSelectionScreen(viewModel: CartViewModel = viewModel()) {
                 Spacer(modifier = Modifier.height(10.dp))
                 FilterSection()
                 Spacer(modifier = Modifier.height(10.dp))
-                ItemList(filteredItems = uiState.items)
+                ItemList(filteredItems = itemSelectionUiState.items)
             }
         }
     }

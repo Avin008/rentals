@@ -11,18 +11,17 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-
 data class ItemSelectionUiState(val items: List<RentalItem> = emptyList(), val isLoading: Boolean)
 
-class CartViewModel: ViewModel() {
-    private val _uiState = MutableStateFlow(ItemSelectionUiState(isLoading = true))
-    val uiState: StateFlow<ItemSelectionUiState> = _uiState.asStateFlow()
 
-    fun getData() {
-        viewModelScope.launch {
-            delay(500)
-            _uiState.update { it.copy(items = sampleItemsData, isLoading = false) }
+class ItemSelectionViewModel: ViewModel() {
+        private val _uiState = MutableStateFlow(ItemSelectionUiState(isLoading = true))
+        val uiState: StateFlow<ItemSelectionUiState> = _uiState.asStateFlow()
+
+        fun getData() {
+            viewModelScope.launch {
+                delay(500)
+                _uiState.update { it.copy(items = sampleItemsData, isLoading = false) }
+            }
         }
-    }
-
 }
