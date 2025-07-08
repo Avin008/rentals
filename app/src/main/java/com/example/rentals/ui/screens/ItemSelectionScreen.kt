@@ -12,11 +12,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.rentals.navigation.Cart
 import com.example.rentals.ui.components.itemselection.CartSummary
 import com.example.rentals.ui.components.itemselection.FilterSection
 import com.example.rentals.ui.components.itemselection.ItemList
@@ -24,7 +26,7 @@ import com.example.rentals.ui.components.itemselection.ItemSearchBar
 import com.example.rentals.ui.viewmodels.ItemSelectionViewModel
 
 @Composable
-fun ItemSelectionScreen(itemSelectionViewModel: ItemSelectionViewModel = viewModel()) {
+fun ItemSelectionScreen(itemSelectionViewModel: ItemSelectionViewModel = viewModel(), backStack: SnapshotStateList<Any>) {
 
     val itemSelectionUiState by itemSelectionViewModel.uiState.collectAsStateWithLifecycle()
     val text = rememberTextFieldState("")
@@ -41,7 +43,9 @@ fun ItemSelectionScreen(itemSelectionViewModel: ItemSelectionViewModel = viewMod
                 searchResults = listOf()
             )
         } }, bottomBar = {
-        if (!itemSelectionUiState.isLoading) { CartSummary(10, onContinueClick = {}, totalPrice = 100.00) }
+        if (!itemSelectionUiState.isLoading) { CartSummary(10, totalPrice = 100.00, onContinueClick = {
+            backStack.add(Cart(deliveryDate = "", deliveryTime = "", pickupDate = "", pickupTime = ""))
+        }) }
     }) {innerPadding ->
         if (itemSelectionUiState.isLoading) {
             Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
