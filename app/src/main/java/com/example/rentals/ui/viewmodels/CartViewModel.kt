@@ -8,16 +8,21 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class CartViewModel: ViewModel() {
-    private val _uiState = MutableStateFlow<List<RentalItem>>(emptyList())
-    val uiState: StateFlow<List<RentalItem>> = _uiState.asStateFlow()
 
-    init {
+data class ItemSelectionUiState(val items: List<RentalItem> = emptyList(), val isLoading: Boolean)
+
+class CartViewModel: ViewModel() {
+    private val _uiState = MutableStateFlow(ItemSelectionUiState(isLoading = true))
+    val uiState: StateFlow<ItemSelectionUiState> = _uiState.asStateFlow()
+
+    fun getData() {
         viewModelScope.launch {
-            delay(1000)
-            _uiState.value = sampleItemsData
+            delay(500)
+            _uiState.update { it.copy(items = sampleItemsData, isLoading = false) }
         }
     }
+
 }
