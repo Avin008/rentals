@@ -41,7 +41,7 @@ fun OrderSummaryCard(
         modifier = modifier,
         tonalElevation = 8.dp,
         shadowElevation = 4.dp,
-        color = MaterialTheme.colorScheme.surface,
+        color = MaterialTheme.colorScheme.surfaceContainer,
         shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
     ) {
         Column(

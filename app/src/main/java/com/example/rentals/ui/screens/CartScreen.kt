@@ -9,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.rentals.ui.components.cart.Address
+import com.example.rentals.ui.components.cart.AddressCard
 import com.example.rentals.ui.components.cart.CartTopBar
 import com.example.rentals.ui.components.cart.OrderSummaryCard
 import com.example.rentals.ui.components.cart.RentalPeriodCard
@@ -26,7 +28,22 @@ fun CartScreen() {
                 returnHour = 18,
                 returnMinute = 0,
                 rentalDurationDays = 3,
-                formattedRentalDuration = "3 days, 7 Hours")
+                formattedRentalDuration = "3 days, 7 hours")
+
+            val hardcodedAddress = Address(
+                name = "Sarah Johnson",
+                street = "456 Oak Avenue, Suite 12",
+                city = "San Francisco",
+                state = "CA",
+                zipCode = "94102",
+                phoneNumber = "+1 (415) 555-0123"
+            )
+
+            AddressCard(
+                address = null,
+                onAddAddress = { },
+                onEditAddress = { },
+            )
         }
     }
 }
