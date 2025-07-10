@@ -1,6 +1,5 @@
 package com.example.rentals.ui.screens
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -104,12 +103,11 @@ private fun BookingDetailsCard(
     eventDuration: EventDuration,
     bookedItems: List<BookedItem>
 ) {
-    Card(
+    Surface(
         modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-        shape = MaterialTheme.shapes.large,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+        color = MaterialTheme.colorScheme.surfaceContainer,
+        shadowElevation = 2.dp,
+        shape = MaterialTheme.shapes.medium
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             CustomerInfoSection(customerInfo)
