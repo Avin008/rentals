@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun OrderCompletionScreen() {
+fun OrderCompletionScreen(onNavigateToHome: () -> Unit) {
     // In a real app, this data would come from a ViewModel
     val customerInfo = CustomerInfo(
         name = "Jane Doe",
@@ -35,7 +35,7 @@ fun OrderCompletionScreen() {
     Scaffold(
         bottomBar = {
             ActionButtons(
-                onViewDetailsClick = { /* Handle View Order Details */ },
+                onViewDetailsClick = { onNavigateToHome() },
                 onShareReceiptClick = { /* Handle Share Receipt */ }
             )
         }

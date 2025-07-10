@@ -44,7 +44,10 @@ fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
                     CartScreen(onProceedToCheckout = { backStack.add(OrderCompletion(orderId = "12345")) })
                 }
                 is OrderCompletion -> NavEntry(key, metadata = mapOf("extraDataKey" to "extraDataValue")) {
-                    OrderCompletionScreen()
+                    OrderCompletionScreen(onNavigateToHome = {
+                        backStack.clear()
+                        backStack.add(Home)
+                    })
                 }
                 else -> NavEntry(Unit) { Text("Unknown route") }
             }
