@@ -23,9 +23,11 @@ import com.example.rentals.ui.components.cart.OrderSummaryCard
 import com.example.rentals.ui.components.cart.RentalPeriodCard
 
 @Composable
-fun CartScreen() {
+fun CartScreen(onProceedToCheckout: () -> Unit) {
     Scaffold (modifier = Modifier.fillMaxSize(), topBar = { CartTopBar() }, bottomBar = {
-        OrderSummaryCard(orderId = "", subtotal = 200.0, total = 200.0, hasAddress = true, onNavigateToCheckout = {})
+        OrderSummaryCard(orderId = "", subtotal = 200.0, total = 200.0, hasAddress = true, onNavigateToCheckout = {
+            onProceedToCheckout()
+        })
     }){ innerPadding ->
         Column(modifier = Modifier
             .fillMaxSize()
