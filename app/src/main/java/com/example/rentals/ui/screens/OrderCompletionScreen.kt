@@ -6,12 +6,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.text.NumberFormat
+import java.util.Locale
 
 @Composable
 fun OrderCompletionScreen(onNavigateToHome: () -> Unit) {
@@ -150,7 +153,7 @@ private fun BookedItemsSection(bookedItems: List<BookedItem>) {
         bookedItems.forEach { item ->
             BookedItemRow(
                 itemName = "${item.quantity}x ${item.name}",
-                itemPrice = "$${item.price}"
+                itemPrice = item.price
             )
         }
     }
@@ -204,24 +207,34 @@ private fun DurationRow(type: String, date: String) {
 }
 
 @Composable
-private fun BookedItemRow(itemName: String, itemPrice: String) {
+private fun BookedItemRow(itemName: String, itemPrice: Double) {
+
+    val currencyFormatter = remember {
+        NumberFormat.getCurrencyInstance(Locale("en", "IN"))
+    }
+
     Row(
         modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(text = itemName, style = MaterialTheme.typography.bodyLarge)
-        Text(text = itemPrice, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(text = currencyFormatter.format(itemPrice), style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }
 
 @Composable
 private fun TotalAmountRow(totalAmount: Double) {
+
+    val currencyFormatter = remember {
+        NumberFormat.getCurrencyInstance(Locale("en", "IN"))
+    }
+
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text("TOTAL AMOUNT", style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold)
-        Text("$%.2f".format(totalAmount), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.ExtraBold)
+        Text(currencyFormatter.format(totalAmount), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.ExtraBold)
     }
 }

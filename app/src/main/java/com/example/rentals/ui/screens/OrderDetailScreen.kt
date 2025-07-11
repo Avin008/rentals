@@ -13,6 +13,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.rentals.ui.theme.RentalsTheme
+import java.text.NumberFormat
+import java.util.Locale
 
 // Dummy data models for preview purposes
 data class Customer(val name: String, val address: String, val phone: String)
@@ -136,6 +138,10 @@ fun ItemsListSection(
 
 @Composable
 fun ItemRow(item: OrderItem, onRemove: () -> Unit, onQuantityChange: (Int) -> Unit) {
+
+    val currencyFormatter = remember {
+        NumberFormat.getCurrencyInstance(Locale("en", "IN"))
+    }
     var quantity by remember { mutableIntStateOf(item.quantity) }
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -147,7 +153,7 @@ fun ItemRow(item: OrderItem, onRemove: () -> Unit, onQuantityChange: (Int) -> Un
         ) {
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(item.name, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyLarge)
-                Text("Price: $${item.price}", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text("Price: ${currencyFormatter.format(item.price)}", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 IconButton(onClick = { if (quantity > 1) { quantity--; onQuantityChange(quantity) } }, modifier=Modifier.size(32.dp)) { Icon(Icons.Default.Remove, "Decrement") }
@@ -175,10 +181,10 @@ fun OrderSummarySection(items: List<OrderItem>) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             SectionHeader(title = "Order Summary", icon = Icons.Default.Receipt)
             Divider()
-            SummaryRow("Subtotal", "$%.2f".format(subtotal))
-            SummaryRow("Tax (10%)", "$%.2f".format(tax))
+            SummaryRow("Subtotal", subtotal)
+            SummaryRow("Tax (10%)", tax)
             Divider(modifier = Modifier.padding(vertical = 8.dp))
-            SummaryRow("Total", "$%.2f".format(total), isTotal = true)
+            SummaryRow("Total", total, isTotal = true)
         }
     }
 }
@@ -229,13 +235,16 @@ fun DetailRow(label: String, value: String) {
 }
 
 @Composable
-fun SummaryRow(label: String, value: String, isTotal: Boolean = false) {
+fun SummaryRow(label: String, value: Double, isTotal: Boolean = false) {
+    val currencyFormatter = remember {
+        NumberFormat.getCurrencyInstance(Locale("en", "IN"))
+    }
     val textStyle = if (isTotal) MaterialTheme.typography.titleMedium else MaterialTheme.typography.bodyLarge
     val fontWeight = if (isTotal) FontWeight.Bold else FontWeight.Normal
 
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
         Text(text = label, style = textStyle, fontWeight = fontWeight)
-        Text(text = value, style = textStyle, fontWeight = fontWeight)
+        Text(text = currencyFormatter.format(value), style = textStyle, fontWeight = fontWeight)
     }
 }
 
