@@ -8,9 +8,13 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.ui.NavDisplay
 import com.example.rentals.ui.screens.CartScreen
+import com.example.rentals.ui.screens.Customer
 import com.example.rentals.ui.screens.HomeScreen
 import com.example.rentals.ui.screens.ItemSelectionScreen
+import com.example.rentals.ui.screens.Order
 import com.example.rentals.ui.screens.OrderCompletionScreen
+import com.example.rentals.ui.screens.OrderDetailScreen
+import com.example.rentals.ui.screens.OrderItem
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -25,6 +29,9 @@ data class Cart(val deliveryDate: String, val pickupDate: String, val deliveryTi
 
 @Serializable
 data class OrderCompletion(val orderId: String): NavKey
+
+@Serializable
+data class OrderDetail(val orderId: String): NavKey
 
 @Composable
 fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
@@ -48,6 +55,21 @@ fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
                         backStack.clear()
                         backStack.add(Home)
                     })
+                }
+                is OrderDetail -> NavEntry(key, metadata = mapOf("extraDataKey" to "extraDataValue")) {
+
+                    val dummyOrder = Order(
+                        id = "12345",
+                        customer = Customer("Jane Doe", "456 Oak Ave, Someplace, USA", "555-5678"),
+                        items = listOf(
+                            OrderItem(1, "Vintage Armchair", 1, 150.0),
+                            OrderItem(2, "Wooden Coffee Table", 1, 75.50),
+                            OrderItem(3, "Floor Lamp", 2, 45.0)
+                        ) as MutableList<OrderItem>,
+                        deliveryStatus = "Out for Delivery"
+                    )
+
+                    OrderDetailScreen(order = dummyOrder, onConfirmPickup = {})
                 }
                 else -> NavEntry(Unit) { Text("Unknown route") }
             }

@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.rentals.navigation.ItemSelection
+import com.example.rentals.navigation.OrderDetail
 import com.example.rentals.ui.components.homescreen.HorizontalDateScroller
 import com.example.rentals.ui.components.homescreen.SectionList
 import com.example.rentals.ui.viewmodels.HomeViewModel
@@ -53,6 +54,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(), backStack: SnapshotStateL
                 0 -> {
                     if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                         SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {
+                            backStack.add(OrderDetail(orderId = "12345"))
                         })
                     }else {
                         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
