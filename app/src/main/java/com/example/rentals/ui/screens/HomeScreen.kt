@@ -1,11 +1,9 @@
 package com.example.rentals.ui.screens
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -16,68 +14,67 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.rentals.navigation.ItemSelection
 import com.example.rentals.navigation.OrderDetail
 import com.example.rentals.ui.components.homescreen.HorizontalDateScroller
 import com.example.rentals.ui.components.homescreen.SectionList
+import com.example.rentals.ui.components.shared.LoadingIndicator
 import com.example.rentals.ui.viewmodels.HomeViewModel
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = viewModel(), backStack: SnapshotStateList<Any>) {
+fun HomeScreen(homeViewModel: HomeViewModel = viewModel(), backStack: SnapshotStateList<Any>) {
+
     val tabList = listOf("Delivery", "Pickup", "OnGoing")
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(uiState.selectedDate, uiState.selectedTabIndex) {
-        val deliveriesData = viewModel.dummyApiCall(uiState.selectedDate, uiState.selectedTabIndex)
-        viewModel.getData(uiState.selectedDate, uiState.selectedTabIndex, deliveriesData)
+        val deliveriesData = homeViewModel.dummyApiCall(uiState.selectedDate, uiState.selectedTabIndex)
+        homeViewModel.getData(uiState.selectedDate, uiState.selectedTabIndex, deliveriesData)
     }
 
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
 
         HorizontalDateScroller(
+            dates = uiState.datesForPreview,
             selectedDate = uiState.selectedDate,
             onDateSelected = { selectedDate ->
-                viewModel.changeDate(selectedDate)
+                homeViewModel.changeDate(selectedDate)
             },
-            dates = uiState.datesForPreview
         )
 
         Spacer(modifier = Modifier.height(10.dp))
 
         OrderTabs(tabList = tabList, selectedTabIndex = uiState.selectedTabIndex, onSelectedTab = {tabIndex ->
-            viewModel.selectTab(tabIndex)
+            homeViewModel.selectTab(tabIndex)
         })
 
         Column(modifier = Modifier.weight(1f)) {
             when(uiState.selectedTabIndex) {
                 0 -> {
                     if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                        SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {
+                        SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { homeViewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {
                             backStack.add(OrderDetail(orderId = "12345"))
                         })
                     }else {
-                        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                            CircularProgressIndicator()
-                        }
+                       LoadingIndicator(modifier = Modifier.weight(1f))
                     }
                 }
                 1 -> {
-                    if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                        SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {})
-                    }else {
-                        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                            CircularProgressIndicator()
-                        }
+                    Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
+                        SectionList(
+                            isRefreshing = uiState.isRefreshing,
+                            onRefresh = { homeViewModel.onRefreshing() },
+                            orders = uiState.deliveries,
+                            onClick = {})
                     }
                 }
                 2 -> {
-                    if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                        SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { viewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {})
-                    }else {
-                        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                            CircularProgressIndicator()
-                        }
+                    Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
+                        SectionList(
+                            isRefreshing = uiState.isRefreshing,
+                            onRefresh = { homeViewModel.onRefreshing() },
+                            orders = uiState.deliveries,
+                            onClick = {})
                     }
                 }
             }
