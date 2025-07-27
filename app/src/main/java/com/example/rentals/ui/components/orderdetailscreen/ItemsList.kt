@@ -35,7 +35,7 @@ fun ItemsList(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "Items (10)", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+            Text(text = "Items (${items.count()})", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
             OutlinedButton(onClick = onAddNewItem) {
                 Icon(Icons.Default.Add, contentDescription = "Add Item", modifier = Modifier.size(18.dp))
                 Spacer(modifier = Modifier.width(8.dp))
