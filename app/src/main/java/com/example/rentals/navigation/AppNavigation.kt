@@ -69,7 +69,7 @@ fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
                         deliveryStatus = "Out for Delivery"
                     )
 
-                    OrderDetailScreen(order = dummyOrder, onConfirmPickup = {})
+                    OrderDetailScreen(order = dummyOrder)
                 }
                 else -> NavEntry(Unit) { Text("Unknown route") }
             }
