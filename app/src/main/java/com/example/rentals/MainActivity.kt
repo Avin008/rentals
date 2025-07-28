@@ -15,8 +15,10 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.example.rentals.navigation.AppNavigation
+import com.example.rentals.navigation.Destinations
 import com.example.rentals.navigation.Home
 import com.example.rentals.navigation.ItemSelection
+import com.example.rentals.navigation.bottomNavItems
 import com.example.rentals.ui.components.homescreen.TopNavigationBar
 import com.example.rentals.ui.components.shared.BottomNavigationBar
 import com.example.rentals.ui.theme.RentalsTheme
@@ -28,15 +30,22 @@ class MainActivity : ComponentActivity() {
         setContent {
             RentalsTheme {
                 val backStack = remember { mutableStateListOf<Any>(Home) }
+                val currentRoute = backStack.last()
+                val showBottomNavbar = bottomNavItems.find { it -> it.route == currentRoute } !== null
+                val showTopBar = backStack.last() == Destinations.Home.route
                 Scaffold(modifier = Modifier.fillMaxSize(),
                     topBar = {
-                        if(backStack.lastIndex == 0) TopNavigationBar()
+                        if(showTopBar) TopNavigationBar()
                     },
                     bottomBar = {
-                        if(backStack.lastIndex == 0) { BottomNavigationBar() }
+                        if(showBottomNavbar) {
+                            BottomNavigationBar(currentRoute = currentRoute,onNavigate = {route ->
+                                backStack.add(route)
+                            })
+                        }
                     },
                     floatingActionButton = {
-                        if (backStack.lastIndex == 0){
+                        if (showTopBar){
                             FloatingActionButton(onClick = {
                                 backStack.add(
                                     ItemSelection(

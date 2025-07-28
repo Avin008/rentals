@@ -10,11 +10,14 @@ import androidx.navigation3.ui.NavDisplay
 import com.example.rentals.ui.screens.CartScreen
 import com.example.rentals.ui.screens.Customer
 import com.example.rentals.ui.screens.HomeScreen
+import com.example.rentals.ui.screens.ItemScreen
 import com.example.rentals.ui.screens.ItemSelectionScreen
+import com.example.rentals.ui.screens.NotificationScreen
 import com.example.rentals.ui.screens.Order
 import com.example.rentals.ui.screens.OrderCompletionScreen
 import com.example.rentals.ui.screens.OrderDetailScreen
 import com.example.rentals.ui.screens.OrderItem
+import com.example.rentals.ui.screens.SearchScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -33,6 +36,15 @@ data class OrderCompletion(val orderId: String): NavKey
 @Serializable
 data class OrderDetail(val orderId: String): NavKey
 
+@Serializable
+data object Search: NavKey
+
+@Serializable
+data object Items: NavKey
+
+@Serializable
+data object Notifications: NavKey
+
 @Composable
 fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
     NavDisplay(
@@ -43,6 +55,15 @@ fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
             when (key) {
                 is Home -> NavEntry(key) {
                     HomeScreen(backStack = backStack)
+                }
+                is Search -> NavEntry(key) {
+                    SearchScreen()
+                }
+                is Items -> NavEntry(key) {
+                    ItemScreen()
+                }
+                is Notifications -> NavEntry(key) {
+                    NotificationScreen()
                 }
                 is ItemSelection -> NavEntry(key, metadata = mapOf("extraDataKey" to "extraDataValue")) {
                     ItemSelectionScreen(backStack = backStack)
