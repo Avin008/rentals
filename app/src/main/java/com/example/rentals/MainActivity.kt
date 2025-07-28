@@ -18,6 +18,7 @@ import com.example.rentals.navigation.AppNavigation
 import com.example.rentals.navigation.Home
 import com.example.rentals.navigation.ItemSelection
 import com.example.rentals.ui.components.homescreen.TopNavigationBar
+import com.example.rentals.ui.components.shared.BottomNavigationBar
 import com.example.rentals.ui.theme.RentalsTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,6 +31,9 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize(),
                     topBar = {
                         if(backStack.lastIndex == 0) TopNavigationBar()
+                    },
+                    bottomBar = {
+                        if(backStack.lastIndex == 0) { BottomNavigationBar() }
                     },
                     floatingActionButton = {
                         if (backStack.lastIndex == 0){
