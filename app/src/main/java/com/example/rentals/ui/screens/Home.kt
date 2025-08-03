@@ -14,7 +14,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.rentals.navigation.OrderDetail
+import com.example.rentals.navigation.OrderDetails
 import com.example.rentals.ui.components.homescreen.HorizontalDateScroller
 import com.example.rentals.ui.components.homescreen.SectionList
 import com.example.rentals.ui.components.shared.LoadingIndicator
@@ -53,7 +53,7 @@ fun HomeScreen(homeViewModel: HomeViewModel = viewModel(), backStack: SnapshotSt
                 0 -> {
                     if (!uiState.isLoading) Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                         SectionList(isRefreshing = uiState.isRefreshing, onRefresh = { homeViewModel.onRefreshing() }, orders = uiState.deliveries, onClick = {
-                            backStack.add(OrderDetail(orderId = "12345"))
+                            backStack.add(OrderDetails(orderId = "12345"))
                         })
                     }else {
                        LoadingIndicator(modifier = Modifier.weight(1f))

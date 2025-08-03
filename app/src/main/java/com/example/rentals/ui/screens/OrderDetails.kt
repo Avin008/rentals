@@ -31,7 +31,7 @@ data class Order(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OrderDetailScreen(order: Order) {
+fun OrderDetailsScreen(order: Order) {
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         TopBar()
 
@@ -75,6 +75,6 @@ fun OrderDetailScreenPreview() {
         deliveryStatus = "Pending"
     )
     RentalsTheme {
-        OrderDetailScreen(order = dummyOrder)
+        OrderDetailsScreen(order = dummyOrder)
     }
 }
