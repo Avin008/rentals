@@ -1,4 +1,4 @@
-package com.example.rentals.ui.components.homescreen
+package com.example.rentals.ui.components.home
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox

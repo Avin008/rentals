@@ -1,4 +1,4 @@
-package com.example.rentals.ui.components.homescreen
+package com.example.rentals.ui.components.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.BorderStroke

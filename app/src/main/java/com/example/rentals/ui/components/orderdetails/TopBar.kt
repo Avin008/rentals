@@ -1,4 +1,4 @@
-package com.example.rentals.ui.components.orderdetailscreen
+package com.example.rentals.ui.components.orderdetails
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material.icons.Icons

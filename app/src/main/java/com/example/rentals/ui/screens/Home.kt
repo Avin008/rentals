@@ -8,15 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.rentals.ui.components.homescreen.OrderTabs
+import com.example.rentals.ui.components.home.OrderTabs
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.rentals.navigation.OrderDetails
-import com.example.rentals.ui.components.homescreen.HorizontalDateScroller
-import com.example.rentals.ui.components.homescreen.SectionList
+import com.example.rentals.ui.components.home.HorizontalDateScroller
+import com.example.rentals.ui.components.home.SectionList
 import com.example.rentals.ui.components.shared.LoadingIndicator
 import com.example.rentals.ui.viewmodels.HomeViewModel
 

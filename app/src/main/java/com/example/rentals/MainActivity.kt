@@ -19,7 +19,7 @@ import com.example.rentals.navigation.Destinations
 import com.example.rentals.navigation.Home
 import com.example.rentals.navigation.ItemSelection
 import com.example.rentals.navigation.bottomNavItems
-import com.example.rentals.ui.components.homescreen.TopNavigationBar
+import com.example.rentals.ui.components.home.TopNavigationBar
 import com.example.rentals.ui.components.shared.BottomNavigationBar
 import com.example.rentals.ui.theme.RentalsTheme
 

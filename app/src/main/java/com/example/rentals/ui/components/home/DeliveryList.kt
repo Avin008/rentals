@@ -1,4 +1,4 @@
-package com.example.rentals.ui.components.homescreen
+package com.example.rentals.ui.components.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
