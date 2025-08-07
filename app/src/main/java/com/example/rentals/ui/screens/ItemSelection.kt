@@ -37,7 +37,7 @@ fun ItemSelectionScreen(itemSelectionViewModel: ItemSelectionViewModel = viewMod
 
     Scaffold(modifier = Modifier.fillMaxSize(), topBar = {
         if(!itemSelectionUiState.isLoading){
-            CustomSearchBar(textFieldState = text, onSearch = {}, searchResults = emptyList())
+            CustomSearchBar(label = "Search Items",textFieldState = text, onSearch = {}, searchResults = emptyList())
         } }, bottomBar = {
         if (!itemSelectionUiState.isLoading) { CartSummary(10, totalPrice = 100.00, onContinueClick = {
             backStack.add(Cart(deliveryDate = "", deliveryTime = "", pickupDate = "", pickupTime = ""))

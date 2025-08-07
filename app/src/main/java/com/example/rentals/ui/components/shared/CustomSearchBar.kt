@@ -4,7 +4,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -34,6 +33,7 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomSearchBar(
+    label: String,
     textFieldState: TextFieldState,
     onSearch: (String) -> Unit,
     searchResults: List<String>,
@@ -61,7 +61,7 @@ fun CustomSearchBar(
                     },
                     expanded = expanded,
                     onExpandedChange = { expanded = it },
-                    placeholder = { Text("Search Items") },
+                    placeholder = { Text(label) },
                     leadingIcon = { IconButton(onClick = {}) { Icon(Icons.Default.ArrowBack, contentDescription = null) } },
                 )
             },

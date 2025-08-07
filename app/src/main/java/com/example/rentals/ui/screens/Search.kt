@@ -36,7 +36,7 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
             LoadingIndicator(modifier = Modifier.weight(1f))
         }else {
             Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-                CustomSearchBar(textFieldState = textFieldState, onSearch = {}, searchResults = emptyList())
+                CustomSearchBar(label = "Search Orders",textFieldState = textFieldState, onSearch = {}, searchResults = emptyList())
                 Spacer(modifier = Modifier.height(10.dp))
                 FilterSection(ordersFilters)
                 Spacer(modifier = Modifier.height(10.dp))
