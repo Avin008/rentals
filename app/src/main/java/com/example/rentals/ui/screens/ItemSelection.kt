@@ -22,7 +22,7 @@ import com.example.rentals.navigation.Cart
 import com.example.rentals.ui.components.itemselection.CartSummary
 import com.example.rentals.ui.components.itemselection.FilterSection
 import com.example.rentals.ui.components.itemselection.ItemList
-import com.example.rentals.ui.components.itemselection.ItemSearchBar
+import com.example.rentals.ui.components.shared.CustomSearchBar
 import com.example.rentals.ui.viewmodels.ItemSelectionViewModel
 
 @Composable
@@ -37,11 +37,7 @@ fun ItemSelectionScreen(itemSelectionViewModel: ItemSelectionViewModel = viewMod
 
     Scaffold(modifier = Modifier.fillMaxSize(), topBar = {
         if(!itemSelectionUiState.isLoading){
-            ItemSearchBar(
-                textFieldState = text,
-                onSearch = { },
-                searchResults = listOf()
-            )
+            CustomSearchBar(textFieldState = text, onSearch = {}, searchResults = emptyList())
         } }, bottomBar = {
         if (!itemSelectionUiState.isLoading) { CartSummary(10, totalPrice = 100.00, onContinueClick = {
             backStack.add(Cart(deliveryDate = "", deliveryTime = "", pickupDate = "", pickupTime = ""))
