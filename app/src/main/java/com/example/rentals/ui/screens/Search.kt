@@ -3,6 +3,7 @@ package com.example.rentals.ui.screens
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
@@ -19,6 +20,11 @@ import com.example.rentals.ui.components.shared.FilterSection
 import com.example.rentals.ui.components.shared.CustomSearchBar
 import com.example.rentals.ui.components.shared.LoadingIndicator
 import com.example.rentals.ui.viewmodels.SearchViewModel
+import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.text.font.FontWeight
+import com.example.rentals.ui.components.shared.ListHeader
 
 @Composable
 fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
@@ -39,6 +45,8 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
                 CustomSearchBar(label = "Search Orders",textFieldState = textFieldState, onSearch = {}, searchResults = emptyList())
                 Spacer(modifier = Modifier.height(10.dp))
                 FilterSection(ordersFilters)
+                Spacer(modifier = Modifier.height(10.dp))
+                ListHeader(text = "Search Results", modifier = Modifier.padding(horizontal = 20.dp))
                 Spacer(modifier = Modifier.height(10.dp))
                 SectionList(
                     isRefreshing = false,
