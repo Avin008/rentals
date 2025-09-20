@@ -72,5 +72,44 @@ val sampleItemsData = listOf(RentalItem(
         createdAt = "2025-07-01T10:00:00Z",
         inStock = 3,
         totalItems = 5
+    ),
+    RentalItem(
+        userId = "user_001",
+        id = UUID.randomUUID().toString(),
+        imageUrl = "https://example.com/images/dj.jpg",
+        name = "DJ Set",
+        category = "Electronics",
+        price = 150.0,
+        description = "A complete DJ set for your party.",
+        isAvailable = true,
+        createdAt = "2025-07-01T10:00:00Z",
+        inStock = 2,
+        totalItems = 2
+    ),
+    RentalItem(
+        userId = "user_001",
+        id = UUID.randomUUID().toString(),
+        imageUrl = "https://example.com/images/pots.jpg",
+        name = "Cooking Pots",
+        category = "Kitchenware",
+        price = 25.0,
+        description = "A set of large cooking pots for events.",
+        isAvailable = true,
+        createdAt = "2025-07-01T10:00:00Z",
+        inStock = 10,
+        totalItems = 10
+    ),
+    RentalItem(
+        userId = "user_001",
+        id = UUID.randomUUID().toString(),
+        imageUrl = "https://example.com/images/tent.jpg",
+        name = "Tent",
+        category = "Outdoor",
+        price = 50.0,
+        description = "A large tent for outdoor events.",
+        isAvailable = false,
+        createdAt = "2025-07-01T10:00:00Z",
+        inStock = 0,
+        totalItems = 3
     )
 )

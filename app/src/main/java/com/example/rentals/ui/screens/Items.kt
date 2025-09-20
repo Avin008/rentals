@@ -24,19 +24,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.rentals.data.RentalItem
 import com.example.rentals.data.ordersFilters
-import com.example.rentals.ui.components.shared.FilterSection
 import com.example.rentals.ui.components.shared.CustomSearchBar
-import com.example.rentals.ui.components.shared.ListHeader
 import com.example.rentals.ui.components.shared.LoadingIndicator
-import com.example.rentals.ui.components.store.StoreItemCard
-import com.example.rentals.ui.viewmodels.SearchViewModel
+import com.example.rentals.ui.components.items.StoreItemCard
+import com.example.rentals.ui.components.shared.FilterSection
+import com.example.rentals.ui.components.shared.ListHeader
+import com.example.rentals.ui.viewmodels.ItemsViewModel
 
 @Composable
-fun ItemsScreen(itemsViewModel: SearchViewModel = viewModel()) {
+fun ItemsScreen(itemsViewModel: ItemsViewModel = viewModel()) {
 
-    val searchUiState by itemsViewModel.uiState.collectAsStateWithLifecycle()
+    val itemsUiState by itemsViewModel.uiState.collectAsStateWithLifecycle()
 
     val textFieldState = rememberTextFieldState()
 
@@ -45,7 +44,7 @@ fun ItemsScreen(itemsViewModel: SearchViewModel = viewModel()) {
     }
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        if(searchUiState.isLoading) {
+        if(itemsUiState.isLoading) {
             LoadingIndicator(modifier = Modifier.weight(1f))
         }else {
             Scaffold(topBar = {
@@ -60,37 +59,19 @@ fun ItemsScreen(itemsViewModel: SearchViewModel = viewModel()) {
                     Icon(Icons.Filled.Add, contentDescription = "") }
             }) {innerPadding ->
                 Column(
-                    modifier = Modifier.fillMaxSize().padding(innerPadding).padding(horizontal = 12.dp),
+                    modifier = Modifier.fillMaxSize().padding(innerPadding),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Spacer(modifier = Modifier.height(10.dp))
                     FilterSection(ordersFilters)
                     Spacer(modifier = Modifier.height(10.dp))
-                    ListHeader(text = "Items in Store", modifier = Modifier.padding(horizontal = 10.dp))
+                    ListHeader("All Items (${itemsUiState.items.count()})", modifier = Modifier.padding(horizontal = 20.dp))
                     Spacer(modifier = Modifier.height(10.dp))
-                    LazyColumn(
-                        contentPadding = PaddingValues(bottom = 80.dp),
-                        verticalArrangement = Arrangement.spacedBy(10.dp)
-                    ) {
-                        items(searchUiState.items) { deliveryItem ->
-                            val rentalItem = RentalItem(
-                                userId = "",
-                                id = deliveryItem.id,
-                                imageUrl = "",
-                                name = "Dj Box",
-                                category = "",
-                                price = deliveryItem.price,
-                                description = "",
-                                isAvailable = true,
-                                createdAt = "",
-                                inStock = 0,
-                                totalItems = 0
-                            )
-                                StoreItemCard(
-                                    item = rentalItem
-                                )
-                            }
+                    LazyColumn(contentPadding = PaddingValues(bottom = 80.dp, start = 15.dp, end = 15.dp),  verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                        items(itemsUiState.items) {it ->
+                            StoreItemCard(it)
                         }
+                    }
                     }
                 }
             }
