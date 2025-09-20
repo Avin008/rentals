@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.ui.NavDisplay
+import com.example.rentals.ui.screens.AddItem
 import com.example.rentals.ui.screens.CartScreen
 import com.example.rentals.ui.screens.Customer
 import com.example.rentals.ui.screens.HomeScreen
@@ -45,6 +46,9 @@ data object Items: NavKey
 @Serializable
 data object Notifications: NavKey
 
+@Serializable
+data object AddItem: NavKey
+
 @Composable
 fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
     NavDisplay(
@@ -60,7 +64,7 @@ fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
                     SearchScreen()
                 }
                 is Items -> NavEntry(key) {
-                    ItemsScreen()
+                    ItemsScreen(backStack = backStack)
                 }
                 is Notifications -> NavEntry(key) {
                     NotificationsScreen()
@@ -77,6 +81,11 @@ fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
                         backStack.add(Home)
                     })
                 }
+
+                is AddItem -> NavEntry(key, metadata = mapOf("extraDataKey" to "extraDataValue")) {
+                    AddItem()
+                }
+
                 is OrderDetails -> NavEntry(key, metadata = mapOf("extraDataKey" to "extraDataValue")) {
 
                     val dummyOrder = Order(

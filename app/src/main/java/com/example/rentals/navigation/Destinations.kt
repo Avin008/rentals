@@ -11,6 +11,9 @@ sealed class Destinations(val title: String, val icon: ImageVector, val route: A
     object Home: Destinations(title = "Home", icon = Icons.Default.Home, route = com.example.rentals.navigation.Home)
     object Search: Destinations(title = "Search", icon = Icons.Default.Search, route = com.example.rentals.navigation.Search)
     object Items: Destinations(title = "Items", icon = Icons.Default.ShoppingCart, route = com.example.rentals.navigation.Items)
+
+    object AddNewItem: Destinations(title = "Add Item", icon = Icons.Default.ShoppingCart, route = com.example.rentals.navigation.AddItem)
+
     object Notifications: Destinations(title = "Notifications", icon = Icons.Default.Notifications, route = com.example.rentals.navigation.Notifications)
 
 }

@@ -19,12 +19,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.rentals.data.ordersFilters
+import com.example.rentals.data.itemsFilters
+import com.example.rentals.navigation.AddItem
 import com.example.rentals.ui.components.shared.CustomSearchBar
 import com.example.rentals.ui.components.shared.LoadingIndicator
 import com.example.rentals.ui.components.items.StoreItemCard
@@ -33,7 +35,7 @@ import com.example.rentals.ui.components.shared.ListHeader
 import com.example.rentals.ui.viewmodels.ItemsViewModel
 
 @Composable
-fun ItemsScreen(itemsViewModel: ItemsViewModel = viewModel()) {
+fun ItemsScreen(itemsViewModel: ItemsViewModel = viewModel(), backStack: SnapshotStateList<Any>) {
 
     val itemsUiState by itemsViewModel.uiState.collectAsStateWithLifecycle()
 
@@ -55,7 +57,9 @@ fun ItemsScreen(itemsViewModel: ItemsViewModel = viewModel()) {
                     searchResults = emptyList()
                 )
             }, contentWindowInsets = WindowInsets(top = 10.dp),modifier = Modifier, floatingActionButton = {
-                FloatingActionButton(onClick = {}) {
+                FloatingActionButton(onClick = {
+                    backStack.add(AddItem)
+                }) {
                     Icon(Icons.Filled.Add, contentDescription = "") }
             }) {innerPadding ->
                 Column(
@@ -63,7 +67,7 @@ fun ItemsScreen(itemsViewModel: ItemsViewModel = viewModel()) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Spacer(modifier = Modifier.height(10.dp))
-                    FilterSection(ordersFilters)
+                    FilterSection(itemsFilters)
                     Spacer(modifier = Modifier.height(10.dp))
                     ListHeader("All Items (${itemsUiState.items.count()})", modifier = Modifier.padding(horizontal = 20.dp))
                     Spacer(modifier = Modifier.height(10.dp))

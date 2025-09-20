@@ -12,3 +12,10 @@ sealed class OrdersFilters(val id: String,val label: String, val icon: ImageVect
 
 
 val ordersFilters = listOf(OrdersFilters.Date, OrdersFilters.Status, OrdersFilters.Location)
+
+sealed class ItemsFilters(val id: String,val label: String, val icon: ImageVector) {
+    object Category: OrdersFilters(id = "1","Category", icon = Icons.Filled.KeyboardArrowDown)
+    object SortBy: OrdersFilters(id= "2","Sort by", icon = Icons.Filled.KeyboardArrowDown)
+}
+
+val itemsFilters = listOf(ItemsFilters.Category, ItemsFilters.SortBy)
