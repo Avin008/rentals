@@ -13,7 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopNavigationBar() {
+fun TopNavigationBar(navigateToProfile: () -> Any) {
     TopAppBar(title = { Text(text = "PiedPiper",  fontWeight = FontWeight.SemiBold) }, navigationIcon = {
         IconButton(onClick = {}) {
             Icon(
@@ -22,7 +22,9 @@ fun TopNavigationBar() {
             )
         }
     }, actions = {
-        IconButton(onClick = {}) {
+        IconButton(onClick = {
+            navigateToProfile()
+        }) {
             Icon(imageVector = Icons.Filled.AccountCircle, contentDescription = "Account")
         }
 

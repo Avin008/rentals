@@ -18,6 +18,7 @@ import com.example.rentals.navigation.AppNavigation
 import com.example.rentals.navigation.Destinations
 import com.example.rentals.navigation.Home
 import com.example.rentals.navigation.ItemSelection
+import com.example.rentals.navigation.Profile
 import com.example.rentals.navigation.bottomNavItems
 import com.example.rentals.ui.components.home.TopNavigationBar
 import com.example.rentals.ui.components.shared.BottomNavigationBar
@@ -35,7 +36,9 @@ class MainActivity : ComponentActivity() {
                 val showTopBar = backStack.last() == Destinations.Home.route
                 Scaffold(modifier = Modifier.fillMaxSize(),
                     topBar = {
-                        if(showTopBar) TopNavigationBar()
+                        if(showTopBar) TopNavigationBar(navigateToProfile = {
+                            backStack.add(Profile)
+                        })
                     },
                     bottomBar = {
                         if(showBottomNavbar) {

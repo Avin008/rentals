@@ -18,6 +18,7 @@ import com.example.rentals.ui.screens.Order
 import com.example.rentals.ui.screens.OrderCompletionScreen
 import com.example.rentals.ui.screens.OrderDetailsScreen
 import com.example.rentals.ui.screens.OrderItem
+import com.example.rentals.ui.screens.Profile
 import com.example.rentals.ui.screens.SearchScreen
 import kotlinx.serialization.Serializable
 
@@ -49,6 +50,9 @@ data object Notifications: NavKey
 @Serializable
 data object AddItem: NavKey
 
+@Serializable
+data object Profile: NavKey
+
 @Composable
 fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
     NavDisplay(
@@ -74,6 +78,9 @@ fun AppNavigation(modifier: Modifier, backStack:  SnapshotStateList<Any>) {
                 }
                 is Cart -> NavEntry(key, metadata = mapOf("extraDataKey" to "extraDataValue")) {
                     CartScreen(onProceedToCheckout = { backStack.add(OrderCompletion(orderId = "12345")) })
+                }
+                is Profile -> NavEntry(key, metadata = mapOf("extraDataKey" to "extraDataValue")) {
+                    Profile()
                 }
                 is OrderCompletion -> NavEntry(key, metadata = mapOf("extraDataKey" to "extraDataValue")) {
                     OrderCompletionScreen(onNavigateToHome = {
