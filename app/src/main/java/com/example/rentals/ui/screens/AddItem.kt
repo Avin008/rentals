@@ -28,7 +28,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -45,6 +44,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.Card
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.material3.Switch
+import androidx.compose.foundation.layout.Row
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 
 data class AddItemFormState(
     val name: String = "",
@@ -53,7 +55,8 @@ data class AddItemFormState(
     val description: String = "",
     val inStock: String = "",
     val totalItems: String = "",
-    val hasErrors: Boolean = false
+    val hasErrors: Boolean = false,
+    val isAvailable: Boolean = true
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -61,14 +64,12 @@ data class AddItemFormState(
 fun AddItem(onItemAdded: () -> Unit = {}, onNavigateBack: () -> Unit = {}) {
     var formState by remember { mutableStateOf(AddItemFormState()) }
 
-    Scaffold(
-        topBar = { AddItemTopBar(onNavigateBack = onNavigateBack) }
-    ) { paddingValues ->
+    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+        AddItemTopBar(onNavigateBack = onNavigateBack)
         AddItemContent(
             formState = formState,
             onFormStateChange = { formState = it },
             onItemAdded = onItemAdded,
-            modifier = Modifier.padding(paddingValues)
         )
     }
 }
@@ -100,9 +101,8 @@ private fun AddItemContent(
     onItemAdded: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Surface(
+    Column(
         modifier = modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
     ) {
         LazyColumn(
             modifier = Modifier
@@ -114,6 +114,7 @@ private fun AddItemContent(
             item { PhotoSection() }
             item { BasicInformationSection(formState, onFormStateChange) }
             item { PricingAndInventorySection(formState, onFormStateChange) }
+            item { AvailabilitySection(formState, onFormStateChange) }
             item { AddItemButton(formState, onFormStateChange, onItemAdded) }
         }
     }
@@ -187,6 +188,7 @@ private fun PricingAndInventorySection(
                 isError = formState.price.isEmpty() && formState.hasErrors,
                 helperText = "Enter the daily rental price"
             )
+            
             FormTextField(
                 value = formState.inStock,
                 onValueChange = { onFormStateChange(formState.copy(inStock = it)) },
@@ -196,6 +198,7 @@ private fun PricingAndInventorySection(
                 isError = formState.inStock.isEmpty() && formState.hasErrors,
                 helperText = "Number of items currently available"
             )
+            
             FormTextField(
                 value = formState.totalItems,
                 onValueChange = { onFormStateChange(formState.copy(totalItems = it)) },
@@ -204,6 +207,43 @@ private fun PricingAndInventorySection(
                 keyboardType = KeyboardType.Number,
                 isError = formState.totalItems.isEmpty() && formState.hasErrors,
                 helperText = "Total number of items in inventory"
+            )
+        }
+    }
+}
+
+@Composable
+private fun AvailabilitySection(
+    formState: AddItemFormState,
+    onFormStateChange: (AddItemFormState) -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalAlignment = CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                Text(
+                    text = "Make Available for Rent",
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Text(
+                    text = "Toggle to make this item available for rental",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            Switch(
+                checked = formState.isAvailable,
+                onCheckedChange = { onFormStateChange(formState.copy(isAvailable = it)) }
             )
         }
     }
