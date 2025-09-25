@@ -39,6 +39,9 @@ data class OrderCompletion(val orderId: String): NavKey
 data class OrderDetails(val orderId: String): NavKey
 
 @Serializable
+data class EditItem(val itemId: String): NavKey
+
+@Serializable
 data object Search: NavKey
 
 @Serializable

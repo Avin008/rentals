@@ -27,6 +27,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.rentals.data.itemsFilters
 import com.example.rentals.navigation.AddItem
+import com.example.rentals.navigation.EditItem
 import com.example.rentals.ui.components.shared.CustomSearchBar
 import com.example.rentals.ui.components.shared.LoadingIndicator
 import com.example.rentals.ui.components.items.StoreItemCard
@@ -73,7 +74,9 @@ fun ItemsScreen(itemsViewModel: ItemsViewModel = viewModel(), backStack: Snapsho
                     Spacer(modifier = Modifier.height(10.dp))
                     LazyColumn(contentPadding = PaddingValues(bottom = 80.dp, start = 15.dp, end = 15.dp),  verticalArrangement = Arrangement.spacedBy(5.dp)) {
                         items(itemsUiState.items) {it ->
-                            StoreItemCard(it)
+                            StoreItemCard(it) { id ->
+                                backStack.add(EditItem(id))
+                            }
                         }
                     }
                     }

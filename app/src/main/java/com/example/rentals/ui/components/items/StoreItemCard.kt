@@ -20,7 +20,8 @@ import com.example.rentals.data.RentalItem
 
 @Composable
 fun StoreItemCard(
-    item: RentalItem
+    item: RentalItem,
+    onNavigate: (itemId: String) -> Any
 ) {
     Card(
         modifier = Modifier
@@ -31,7 +32,10 @@ fun StoreItemCard(
         border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
-        )
+        ),
+        onClick = {
+            onNavigate(item.id)
+        }
     ) {
         Column(
             modifier = Modifier

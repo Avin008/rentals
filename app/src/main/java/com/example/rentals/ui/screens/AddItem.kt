@@ -292,7 +292,7 @@ private fun ImageSelector() {
 }
 
 @Composable
-private fun FormTextField(
+fun FormTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
