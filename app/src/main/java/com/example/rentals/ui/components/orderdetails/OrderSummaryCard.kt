@@ -4,8 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Receipt
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -27,7 +25,7 @@ fun OrderSummaryCard(items: List<OrderItem>) {
         shape = MaterialTheme.shapes.medium
     ) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            SectionHeader(title = "Order Summary", icon = Icons.Default.Receipt)
+            SectionHeader(title = "Order Summary")
             Divider()
             SummaryRow("Subtotal", subtotal)
             SummaryRow("Tax (10%)", tax)
