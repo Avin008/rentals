@@ -19,9 +19,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.rentals.ui.viewmodels.BookedItem
-import com.example.rentals.ui.viewmodels.CustomerInfo
-import com.example.rentals.ui.viewmodels.EventDuration
+import com.example.rentals.ui.screens.order_confirmation.BookedItem
+import com.example.rentals.ui.screens.order_confirmation.CustomerInfo
+import com.example.rentals.ui.screens.order_confirmation.EventDuration
 import java.text.NumberFormat
 import java.util.Locale
 import kotlin.collections.forEach

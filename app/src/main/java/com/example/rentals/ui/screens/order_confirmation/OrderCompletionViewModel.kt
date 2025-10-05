@@ -1,4 +1,4 @@
-package com.example.rentals.ui.viewmodels
+package com.example.rentals.ui.screens.order_confirmation
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.delay

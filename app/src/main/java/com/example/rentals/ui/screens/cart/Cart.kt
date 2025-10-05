@@ -1,4 +1,4 @@
-package com.example.rentals.ui.screens
+package com.example.rentals.ui.screens.cart
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

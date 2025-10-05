@@ -7,19 +7,19 @@ import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.ui.NavDisplay
-import com.example.rentals.ui.screens.AddItem
-import com.example.rentals.ui.screens.CartScreen
-import com.example.rentals.ui.screens.Customer
-import com.example.rentals.ui.screens.HomeScreen
-import com.example.rentals.ui.screens.ItemSelectionScreen
-import com.example.rentals.ui.screens.ItemsScreen
-import com.example.rentals.ui.screens.NotificationsScreen
-import com.example.rentals.ui.screens.Order
-import com.example.rentals.ui.screens.OrderCompletionScreen
-import com.example.rentals.ui.screens.OrderDetailsScreen
-import com.example.rentals.ui.screens.OrderItem
-import com.example.rentals.ui.screens.Profile
-import com.example.rentals.ui.screens.SearchScreen
+import com.example.rentals.ui.screens.add_item.AddItem
+import com.example.rentals.ui.screens.cart.CartScreen
+import com.example.rentals.ui.screens.order.Customer
+import com.example.rentals.ui.screens.home.HomeScreen
+import com.example.rentals.ui.screens.item_selection.ItemSelectionScreen
+import com.example.rentals.ui.screens.items.ItemsScreen
+import com.example.rentals.ui.screens.notifications.NotificationsScreen
+import com.example.rentals.ui.screens.order.Order
+import com.example.rentals.ui.screens.order_confirmation.OrderCompletionScreen
+import com.example.rentals.ui.screens.order.OrderDetailsScreen
+import com.example.rentals.ui.screens.order.OrderItem
+import com.example.rentals.ui.screens.profile.Profile
+import com.example.rentals.ui.screens.search.SearchScreen
 import kotlinx.serialization.Serializable
 
 @Serializable

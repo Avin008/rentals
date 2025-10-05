@@ -27,7 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.rentals.ui.screens.OrderItem
+import com.example.rentals.ui.screens.order.OrderItem
 import java.text.NumberFormat
 import java.util.Locale
 

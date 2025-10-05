@@ -1,9 +1,8 @@
-package com.example.rentals.ui.screens
+package com.example.rentals.ui.screens.search
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
@@ -19,11 +18,7 @@ import com.example.rentals.ui.components.home.SectionList
 import com.example.rentals.ui.components.shared.FilterSection
 import com.example.rentals.ui.components.shared.CustomSearchBar
 import com.example.rentals.ui.components.shared.LoadingIndicator
-import com.example.rentals.ui.viewmodels.SearchViewModel
-import androidx.compose.material3.Text
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.foundation.layout.padding
-import androidx.compose.ui.text.font.FontWeight
 import com.example.rentals.ui.components.shared.ListHeader
 
 @Composable

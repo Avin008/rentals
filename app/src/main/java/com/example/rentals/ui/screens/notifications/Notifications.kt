@@ -1,4 +1,4 @@
-package com.example.rentals.ui.screens
+package com.example.rentals.ui.screens.notifications
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*

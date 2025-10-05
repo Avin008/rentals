@@ -1,4 +1,4 @@
-package com.example.rentals.ui.screens
+package com.example.rentals.ui.screens.item_selection
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,7 +23,6 @@ import com.example.rentals.ui.components.itemselection.CartSummary
 import com.example.rentals.ui.components.itemselection.FilterSection
 import com.example.rentals.ui.components.itemselection.ItemList
 import com.example.rentals.ui.components.shared.CustomSearchBar
-import com.example.rentals.ui.viewmodels.ItemSelectionViewModel
 
 @Composable
 fun ItemSelectionScreen(itemSelectionViewModel: ItemSelectionViewModel = viewModel(), backStack: SnapshotStateList<Any>) {

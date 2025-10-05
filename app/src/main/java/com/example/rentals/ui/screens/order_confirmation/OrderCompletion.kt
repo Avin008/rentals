@@ -1,4 +1,4 @@
-package com.example.rentals.ui.screens
+package com.example.rentals.ui.screens.order_confirmation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,7 +14,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.rentals.ui.components.ordercompletion.ActionButtonsBar
 import com.example.rentals.ui.components.ordercompletion.BookingDetailsCard
 import com.example.rentals.ui.components.ordercompletion.ConfirmationHeader
-import com.example.rentals.ui.viewmodels.OrderCompletionViewModel
 
 @Composable
 fun OrderCompletionScreen(onNavigateToHome: () -> Unit, viewModel: OrderCompletionViewModel = viewModel()) {

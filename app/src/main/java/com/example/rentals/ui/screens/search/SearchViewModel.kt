@@ -1,4 +1,4 @@
-package com.example.rentals.ui.viewmodels
+package com.example.rentals.ui.screens.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

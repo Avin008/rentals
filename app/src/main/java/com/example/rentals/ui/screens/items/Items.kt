@@ -1,4 +1,4 @@
-package com.example.rentals.ui.screens
+package com.example.rentals.ui.screens.items
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -33,7 +33,6 @@ import com.example.rentals.ui.components.shared.LoadingIndicator
 import com.example.rentals.ui.components.items.StoreItemCard
 import com.example.rentals.ui.components.shared.FilterSection
 import com.example.rentals.ui.components.shared.ListHeader
-import com.example.rentals.ui.viewmodels.ItemsViewModel
 
 @Composable
 fun ItemsScreen(itemsViewModel: ItemsViewModel = viewModel(), backStack: SnapshotStateList<Any>) {

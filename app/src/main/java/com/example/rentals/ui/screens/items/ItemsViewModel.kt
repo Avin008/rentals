@@ -1,4 +1,4 @@
-package com.example.rentals.ui.viewmodels
+package com.example.rentals.ui.screens.items
 
 import androidx.lifecycle.ViewModel
 import com.example.rentals.data.RentalItem

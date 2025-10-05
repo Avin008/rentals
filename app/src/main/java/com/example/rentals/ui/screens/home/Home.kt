@@ -1,4 +1,4 @@
-package com.example.rentals.ui.screens
+package com.example.rentals.ui.screens.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -18,7 +18,6 @@ import com.example.rentals.navigation.OrderDetails
 import com.example.rentals.ui.components.home.HorizontalDateScroller
 import com.example.rentals.ui.components.home.SectionList
 import com.example.rentals.ui.components.shared.LoadingIndicator
-import com.example.rentals.ui.viewmodels.HomeViewModel
 
 @Composable
 fun HomeScreen(homeViewModel: HomeViewModel = viewModel(), backStack: SnapshotStateList<Any>) {

@@ -94,7 +94,7 @@ fun AddressCard(
             Spacer(modifier = Modifier.height(12.dp))
 
             // Content
-            if (hasAddress && address != null) {
+            if (hasAddress) {
                 AddressContent(address = address)
             } else {
                 AddAddressButton(onClick = onAddAddress)
