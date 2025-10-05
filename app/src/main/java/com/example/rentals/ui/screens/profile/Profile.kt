@@ -94,7 +94,7 @@ private fun ProfileContent(
 private fun ProfileTopBar(onNavigateBack: () -> Unit) {
     TopAppBar(
         windowInsets = WindowInsets(top = 10.dp),
-        title = { Text("Account") },
+        title = { Text("Account", fontWeight = FontWeight.Medium) },
         navigationIcon = {
             IconButton(
                 onClick = onNavigateBack,

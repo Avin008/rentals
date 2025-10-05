@@ -46,7 +46,7 @@ fun NotificationsScreen() {
     ) {
         TopAppBar(
             windowInsets = WindowInsets(top = 10.dp),
-            title = { Text("Notifications") },
+            title = { Text("Notifications", fontWeight = FontWeight.Medium) },
             actions = {
                 IconButton(onClick = { /* TODO */ }) {
                     Icon(
