@@ -1,4 +1,4 @@
-package com.example.rentals.ui.components.itemselection
+package com.example.rentals.ui.components.item_selection
 
 
 import androidx.compose.foundation.layout.Arrangement

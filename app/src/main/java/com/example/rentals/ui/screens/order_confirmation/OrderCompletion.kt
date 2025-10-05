@@ -11,9 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.rentals.ui.components.ordercompletion.ActionButtonsBar
-import com.example.rentals.ui.components.ordercompletion.BookingDetailsCard
-import com.example.rentals.ui.components.ordercompletion.ConfirmationHeader
+import com.example.rentals.ui.components.order_completion.ActionButtonsBar
+import com.example.rentals.ui.components.order_completion.BookingDetailsCard
+import com.example.rentals.ui.components.order_completion.ConfirmationHeader
 
 @Composable
 fun OrderCompletionScreen(onNavigateToHome: () -> Unit, viewModel: OrderCompletionViewModel = viewModel()) {

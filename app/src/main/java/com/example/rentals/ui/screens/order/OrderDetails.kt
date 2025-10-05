@@ -13,11 +13,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.rentals.ui.components.orderdetails.CustomerDetailsCard
-import com.example.rentals.ui.components.orderdetails.DeliveryStatusCard
-import com.example.rentals.ui.components.orderdetails.ItemsList
-import com.example.rentals.ui.components.orderdetails.OrderSummaryCard
-import com.example.rentals.ui.components.orderdetails.TopBar
+import com.example.rentals.ui.components.order.CustomerDetailsCard
+import com.example.rentals.ui.components.order.DeliveryStatusCard
+import com.example.rentals.ui.components.order.ItemsList
+import com.example.rentals.ui.components.order.OrderSummaryCard
+import com.example.rentals.ui.components.order.TopBar
 import com.example.rentals.ui.theme.RentalsTheme
 
 data class Customer(val name: String, val address: String, val phone: String)

@@ -19,9 +19,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.rentals.navigation.Cart
-import com.example.rentals.ui.components.itemselection.CartSummary
-import com.example.rentals.ui.components.itemselection.FilterSection
-import com.example.rentals.ui.components.itemselection.ItemList
+import com.example.rentals.ui.components.item_selection.CartSummary
+import com.example.rentals.ui.components.item_selection.FilterSection
+import com.example.rentals.ui.components.item_selection.ItemList
 import com.example.rentals.ui.components.shared.CustomSearchBar
 
 @Composable

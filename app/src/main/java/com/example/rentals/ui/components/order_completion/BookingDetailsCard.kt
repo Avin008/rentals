@@ -1,4 +1,4 @@
-package com.example.rentals.ui.components.ordercompletion
+package com.example.rentals.ui.components.order_completion
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

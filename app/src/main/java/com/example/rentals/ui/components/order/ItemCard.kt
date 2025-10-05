@@ -1,4 +1,4 @@
-package com.example.rentals.ui.components.orderdetails
+package com.example.rentals.ui.components.order
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

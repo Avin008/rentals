@@ -1,4 +1,4 @@
-package com.example.rentals.ui.components.itemselection
+package com.example.rentals.ui.components.item_selection
 
 
 import androidx.compose.foundation.BorderStroke
@@ -20,7 +20,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddShoppingCart
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.RemoveShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
