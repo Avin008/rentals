@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocalShipping
 import androidx.compose.material3.Icon
-import com.example.rentals.data.DeliveryItem
+import com.example.rentals.data.model.DeliveryItem
 import com.example.rentals.sampledata.sampleOrderItems
 import com.example.rentals.ui.theme.RentalsTheme
 

@@ -31,7 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.rentals.data.DeliveryItem
+import com.example.rentals.data.model.DeliveryItem
 import com.example.rentals.ui.theme.RentalsTheme
 import com.example.rentals.utils.convert24To12HoursTime
 import java.time.LocalDate

@@ -1,7 +1,7 @@
 package com.example.rentals.sampledata
 
-import com.example.rentals.data.DeliveryItem
-import com.example.rentals.data.RentalItem
+import com.example.rentals.data.model.DeliveryItem
+import com.example.rentals.data.model.RentalItem
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.OffsetDateTime
@@ -9,7 +9,19 @@ import java.time.ZoneOffset
 import java.util.UUID
 
 val sampleOrderItems = listOf(
-    DeliveryItem("1", "Anil Nag", LocalDate.now().toString(), LocalTime.of(10, 30).toString(), 3450.00, "delivery", "user123", null, null, OffsetDateTime.now(ZoneOffset.UTC).toString(), "Badmal"),
+    DeliveryItem(
+        "1",
+        "Anil Nag",
+        LocalDate.now().toString(),
+        LocalTime.of(10, 30).toString(),
+        3450.00,
+        "delivery",
+        "user123",
+        null,
+        null,
+        OffsetDateTime.now(ZoneOffset.UTC).toString(),
+        "Badmal"
+    ),
     DeliveryItem("11", "Mukesh Muna", LocalDate.now().toString(), LocalTime.of(10, 30).toString(), 1990.00, "delivery", "user123", null, null, OffsetDateTime.now(ZoneOffset.UTC).toString(), "Badmal"),
     DeliveryItem("12", "Manesh Suna", LocalDate.now().toString(), LocalTime.of(10, 30).toString(), 7590.00, "delivery", "user123", null, null, OffsetDateTime.now(ZoneOffset.UTC).toString(), "Badmal"),
     DeliveryItem("2", "Nithya Tandi", LocalDate.now().toString(), LocalTime.of(11, 0).toString(), 12000.00, "pickup", "user456", null, null, OffsetDateTime.now(ZoneOffset.UTC).minusHours(2).toString(), "Gandapatrapali"),

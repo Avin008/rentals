@@ -2,7 +2,7 @@ package com.example.rentals.ui.screens.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rentals.data.DeliveryItem
+import com.example.rentals.data.model.DeliveryItem
 import com.example.rentals.sampledata.sampleOrderItems
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.rentals.data.ordersFilters
+import com.example.rentals.data.model.ordersFilters
 import com.example.rentals.ui.components.home.SectionList
 import com.example.rentals.ui.components.shared.FilterSection
 import com.example.rentals.ui.components.shared.CustomSearchBar

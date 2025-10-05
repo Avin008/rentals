@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.rentals.R
-import com.example.rentals.data.RentalItem
+import com.example.rentals.data.model.RentalItem
 
 @Composable
 fun StoreItemCard(

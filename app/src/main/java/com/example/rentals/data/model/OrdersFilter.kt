@@ -1,4 +1,4 @@
-package com.example.rentals.data
+package com.example.rentals.data.model
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown

@@ -1,4 +1,4 @@
-package com.example.rentals.data
+package com.example.rentals.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
