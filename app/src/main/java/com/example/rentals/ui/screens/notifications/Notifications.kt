@@ -121,10 +121,6 @@ private fun NotificationItem(notification: Notification) {
         modifier = Modifier
             .fillMaxWidth()
             .animateContentSize(),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 2.dp,
-            pressedElevation = 4.dp
-        ),
         colors = CardDefaults.cardColors(
             containerColor = if (!notification.isRead)
                 MaterialTheme.colorScheme.surfaceVariant
