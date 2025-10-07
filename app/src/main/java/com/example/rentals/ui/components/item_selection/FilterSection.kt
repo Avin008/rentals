@@ -1,65 +1,50 @@
 package com.example.rentals.ui.components.item_selection
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.AssistChipDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.rentals.ui.components.shared.Dropdown
 
 @Composable
-fun FilterSection() {
+fun FilterSection(
+    selectedCategory: String = "All",
+    onCategorySelected: (String) -> Unit = {},
+    selectedSortBy: String = "Sort by",
+    onSortBySelected: (String) -> Unit = {}
+) {
+    val categories = listOf("All", "Electronics", "Furniture", "Appliances", "Tools", "Sports")
+    val sortByOptions = listOf("Name", "Price: Low to High", "Price: High to Low", "Newest")
+
     Column(modifier = Modifier.fillMaxWidth()) {
-        LazyRow(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp), contentPadding = PaddingValues(horizontal = 20.dp)) {
+        LazyRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = PaddingValues(horizontal = 20.dp)
+        ) {
             item {
-                AssistChip(
-                    onClick = {},
-                    label = { Text("Category", style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Normal)
-                            },
-                    border = BorderStroke(
-                        width = 1.dp,
-                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
-                    ),
-                    leadingIcon = {
-                        Icon(
-                            Icons.Filled.KeyboardArrowDown,
-                            contentDescription = "Localized description",
-                            Modifier.size(AssistChipDefaults.IconSize)
-                        )
-                    }
+                Dropdown(
+                    selectedValue = selectedCategory,
+                    options = categories,
+                    onOptionSelected = onCategorySelected,
+                    icon = Icons.Filled.KeyboardArrowDown,
+                    contentDescription = "Category dropdown"
                 )
             }
             item {
-                AssistChip(
-                    onClick = {},
-                    label = { Text("Sort By", style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Normal)
-                    },
-                    border = BorderStroke(
-                        width = 1.dp,
-                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
-                    ),
-                    leadingIcon = {
-                        Icon(
-                            Icons.Filled.FilterList,
-                            contentDescription = "Localized description",
-                            Modifier.size(AssistChipDefaults.IconSize)
-                        )
-                    }
+                Dropdown(
+                    selectedValue = selectedSortBy,
+                    options = sortByOptions,
+                    onOptionSelected = onSortBySelected,
+                    icon = Icons.Filled.FilterList,
+                    contentDescription = "Sort by dropdown"
                 )
             }
         }
